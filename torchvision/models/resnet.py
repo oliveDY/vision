@@ -203,10 +203,10 @@ class ResNet(nn.Module):
         x = self.layer4(x)
 
         x = self.avgpool(x)
-        x = x.reshape(x.size(0), -1)
-        x = self.fc(x)
+        feature = x.reshape(x.size(0), -1)
+        x = self.fc(feature)
 
-        return x
+        return x, feature
 
 
 def _resnet(arch, block, layers, pretrained, progress, **kwargs):
